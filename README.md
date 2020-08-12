@@ -1,0 +1,4 @@
+## TimelyClicks (WW 8/10/2020 - 8/16/2020)
+
+
+TimelyClicks is a game where you have to press a button from a 4x4 grid before it dissapears. There are multiple levels and as levels increase the amount of time to click the button decreases
