@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets
 import sys
 from src.home import Home
+
 def main():
     app = QtWidgets.QApplication([])
     home = Home()
@@ -9,7 +10,8 @@ def main():
 
     sys.exit(app.exec_())
 
-
-
 if __name__ == "__main__":
-    main()
+    app = QtWidgets.QApplication(sys.argv)
+    w = Home()
+    w.setWindowTitle("Welcome!")
+    sys.exit(app.exec_())
