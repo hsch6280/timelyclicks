@@ -33,8 +33,14 @@ class HomeWidget (QtWidgets.QWidget):
         self.start_game_btn = QPushButton("Start Game")
         self.start_game_btn.setFixedWidth(100)
         self.start_game_btn.setStyleSheet(blue_btn())
+        
+        self.exit_game_btn = QPushButton("Exit")
+        self.exit_game_btn.setFixedWidth(100)
+        self.exit_game_btn.setStyleSheet(blue_btn())
 
         self.layout.addWidget(self.start_game_btn)
+        self.layout.addWidget(self.exit_game_btn)
+        
         self.setLayout(self.layout)
         self.show()
 
@@ -46,6 +52,7 @@ class Home(QtWidgets.QMainWindow):
         super(Home, self).__init__(*args, **kwargs)
         self.homeWidget = HomeWidget()
         self.homeWidget.start_game_btn.clicked.connect(self.start_game)
+        self.homeWidget.exit_game_btn.clicked.connect(self.close)
         self.setCentralWidget(self.homeWidget)
         self.show()
 
