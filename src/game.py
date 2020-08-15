@@ -25,13 +25,28 @@ class GameOver(QtWidgets.QWidget):
         super(GameOver, self).__init__()
         layout = QVBoxLayout()
         layout.setContentsMargins(30, 0, 0, 30)
+
+        # Updates the highscore if score was higher
+        check_highscore(int(end_score))
+        # Store highscore in h
+        h = display_leaderboard()
+
+        # Displays game over
         game_over_label = QLabel("GAME OVER")
         game_over_label.setFont( QFont('Arial', 16, QFont.Bold))
         game_over_label.setAlignment(QtCore.Qt.AlignCenter)
+
+        # Displays score
         score_label = QLabel(f"Score was: {str(end_score)}")
         score_label.setAlignment(QtCore.Qt.AlignCenter)
+
+        # Displays highscore
+        highscore_label = QLabel(f"Highscore is: {h}")
+        highscore_label.setAlignment(QtCore.Qt.AlignCenter)
+
         layout.addWidget(game_over_label)
         layout.addWidget(score_label)
+        layout.addWidget(highscore_label)
         self.setLayout(layout)
         self.show()
 
@@ -169,3 +184,28 @@ class GameHome(QtWidgets.QWidget):
                     layout.addWidget(btn, x, y)
             self.grid = layout
             self.horizontalGroupBox.setLayout(layout)
+
+# Function to display the highest score
+def display_leaderboard():
+
+    #Open and read the file:
+    f = open("src/score.txt", "r")
+
+    highscore = f.read()
+
+    # Return the highscore
+    return(highscore)
+
+# Function to check if there is a new highscore
+def check_highscore(score):
+    #Open and read the file:
+    f = open("src/score.txt", "r")
+
+    highscore = f.read()
+
+    # If the score is greater than the highscore
+    if int(score) > int(highscore):
+        
+        # Open the scores file and overwrite the last highscore with the new highscore
+        f = open("src/score.txt", "w")
+        f.write(str(score))
